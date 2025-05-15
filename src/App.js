@@ -9,7 +9,7 @@ function App() {
       <BookForm />
       <Book />
       <BookByTitle title="Shoe Dog"/>
-      <BooksByAuthor author="HarperLee" />
+      <BooksByAuthor author="Harper Lee" />
     </div>
   );
 }
