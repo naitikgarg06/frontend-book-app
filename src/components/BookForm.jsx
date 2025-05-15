@@ -24,7 +24,7 @@ const BookForm = () => {
   const onSubmitHandler = async (event) => {
     event.preventDefault();
     try {
-      const response = await fetch("http://localhost:3000/books", {
+      const response = await fetch("https://be-4-assignment1-beta.vercel.app/books", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
