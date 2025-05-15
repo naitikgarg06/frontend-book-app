@@ -8,7 +8,7 @@ function App() {
     <div className="App">
       <BookForm />
       <Book />
-      <BookByTitle title="Shoe Dog"/>
+      {/* <BookByTitle title="Shoe Dog"/> */}
       <BooksByAuthor author="Harper Lee" />
     </div>
   );

@@ -1,18 +1,54 @@
-import useFetch from '../useFetch'
+import { useState } from "react";
+import useFetch from "../useFetch";
 
 const Book = () => {
-    const { data, loading, error } = useFetch('http://localhost:3000/books')
+  const [successMessage, setSuccessMessage] = useState("");
+  const { data, loading, error } = useFetch("http://localhost:3000/books");
 
-    return data ? (
-        <div>
-            <h1>All Books</h1>
-            <ul>
-            { data.map((book) => (
-                <li key={book._id}>{book.title}</li>
-            ))}
-            </ul>
-        </div>
-    ) : loading && "Loading..."
-}
+  const handleDelete = async (bookId) => {
+    try {
+      const response = await fetch(`http://localhost:3000/books/${bookId}`, {
+        method: "DELETE",
+      });
 
-export default Book
+      if(!response.ok){
+        throw "Failed to delete book"
+      }
+
+      const data = await response.json()
+      if(data){
+        setSuccessMessage("Book delete successfully")
+        window.location.reload()
+      }
+    } catch (error) {
+        console.log(error)
+    }
+  };
+
+  return data ? (
+    <div>
+      <h1>All Books</h1>
+      {/* {loading && <p>Loading...</p>} */}
+      {/* {data?.error && <p>{data.error}</p>} */}
+      <ul>
+        {data.map((book) => (
+          <li key={book._id}>
+            {book.title}{" "}
+            <button
+              onClick={() => {
+                handleDelete(book._id);
+              }}
+            >
+              Delete
+            </button>
+          </li>
+        ))}
+      </ul>
+      <p>{successMessage}</p>
+    </div>
+  ) : (
+    loading && "Loading..."
+  );
+};
+
+export default Book;

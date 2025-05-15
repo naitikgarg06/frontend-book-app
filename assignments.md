@@ -10,3 +10,10 @@ Added a new component called `AddBookForm` which allows users to add a new book 
 
 ## NOTES
 - The backend route `/books` must be running for this to work
+
+# BI1.3_HW1 - Add DELETE FUNCTIONALITY
+
+## FEATURES
+- Add delete button for each movie
+- let user to delete movie using DELETE request from database
+- displays success message and renders updated book list
